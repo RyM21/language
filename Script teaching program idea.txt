@@ -1,0 +1,63 @@
+# Script teaching program idea
+
+Here is another small program I would like to write. I want to write books / ebooks / programs to teach different scripts and pronunciation systems (script examples = Latin/Roman, Cyrillic, Japanese, Chinese, Korean, Arabic, Thai, Hebrew). My idea is to teach 1-5 characters at a time, and then show example words that contain only characters that have already been taught. This seems like a fairly simple program: 
+
+Example for the Latin/Roman alphabet -- the most common letters are R, S, T, L, N, and E, then A.
+
+1. Introduce e, a, and t, with the following examples:
+
+Simple:
+at
+ate
+eat
+tea
+
+Advanced:
+teat
+Tata (Indian auto company)
+ETA (estimated time of arrival [to destination])
+tat (slang for "tattoo"; or word meaning "reprisal" in the idiom "tit for tat," which means the same thing as the idioms "eye for an eye" or "back and forth"]
+
+2. Introduce "r" and add the following examples:
+
+# each example uses the new letter "r" and some combination of previously introduced letters, but no other letters: 
+
+simple:
+are 
+ear
+tree
+treat
+rat
+rate
+rare
+
+advanced:
+tar
+era (long time period or age)
+ERA (Earned Run Average, a baseball statistic)
+
+... etc. until the whole alphabet is taught.
+
+There are probably programs like this already that I can adapt. For example, there are Scrabble word solvers (Scrabble is a word-formation game where you build words out of the eight random letters you have). I will look, but it could be a useful exercise to try and code it myself.
+
+Possible algorithm - I'm unsure whether to use sets, dictionaries, or a database to store words for each possible combination of characters.
+
+1. Create empty dictionary of possible characters (or letters) (possible_characters)
+2. Create dictionary of possible words for each set of words (results_dict)
+3. Import words as list (word_list) from frequency list
+3. Add initial letters to possible_characters
+4. For new_character in possible_characters:
+       For word in word_list:
+           If word in results_dict: continue 
+           For char in word: 
+               If new_character not in word: continue 
+If char not in possible_characters: continue
+               results_dict.update(char[word])
+
+- Missing from this idea: how to gradually expand the possible_characters list after each iteration. Cyrillic and Latin/Roman will be simpler cases as they have fewer letters. But Japanese and Chinese have ~2,500 and ~5,000, respectively, so I will need an automatic way to update possible_chars after each pass through the function. 
+
+-To manage the size of the database, I would like to limit each combination of words to 20 high-frequency results sorted in order of word frequency. 
+
+What do you think about this approach? Can you suggest any alternatives or better ways to design this program and its data structures?
+
+The best outcome will be if we can get this working, then print the results in a format (such as restructured text, docbook, or LaTeX) that I can export to an ebook / PDF directly.
